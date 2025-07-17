@@ -449,6 +449,7 @@ release {
 bootJar {
     dependsOn publicFrontendIndexTransform//, adminFrontendIndexTransform
     archiveClassifier.set('boot')
+    archiveFileName.set("alfio-boot.jar")
     from(tasks.named("frontendBuild")) {
         into 'BOOT-INF/classes/resources/'
     }

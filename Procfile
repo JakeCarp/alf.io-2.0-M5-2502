@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/alfio-2.0-M5-2502-boot.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/alfio-boot.jar
