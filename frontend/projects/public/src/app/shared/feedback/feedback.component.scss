@@ -1,0 +1,33 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+
+:host .toast {
+  --bs-toast-padding-x: 0;
+  @include media-breakpoint-down(lg) {
+    position: fixed;
+    top: 16px;
+    left: calc(50% - $toast-max-width / 2);
+    max-width: unset;
+    background-color: white;
+  }
+
+  @include media-breakpoint-up(lg) {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    margin: 2rem;
+  }
+
+  padding: 0;
+  z-index: 101;
+
+  .toast-body {
+    padding: 0;
+  }
+}
+
+.message {
+  padding: 1rem;
+  font-size: $font-size-base * 1.1;
+}

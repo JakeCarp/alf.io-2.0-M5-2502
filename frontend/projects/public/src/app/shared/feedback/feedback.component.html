@@ -1,0 +1,12 @@
+@if (active) {
+    <ngb-toast (hidden)="hide()" [autohide]="true" [delay]="2500" [ngClass]="boxClass">
+      <div class="d-flex">
+        <div class="ps-2 pe-2 d-flex justify-content-center align-items-center" [ngClass]="headerClass">
+          <fa-icon [icon]="boxIcon" size="2x" class="ms-2 me-2"></fa-icon>
+        </div>
+        <div class="p-2 d-flex align-items-center">
+          <span class="message">{{text | translate}}</span>
+        </div>
+      </div>
+    </ngb-toast>
+}
