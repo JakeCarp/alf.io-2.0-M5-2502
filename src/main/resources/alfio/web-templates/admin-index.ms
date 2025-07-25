@@ -60,6 +60,7 @@
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/service/organization.service.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/service/user.service.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/email/email-log.js"></script>
+    <script nonce="{{nonce}} src="{{contextPath}}/resources/js/admin/feature/vendor-application/vendor-application.js></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/util/file-upload.js"></script>
 
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/configuration/configuration.js"></script>
@@ -200,6 +201,9 @@
                                 </li>
                                 <li role="presentation" data-ui-sref-active="active">
                                     <a data-ui-sref="events.single.email-log({eventName:ctrl.eventName})" ng-click="ctrl.menuCollapsed = true"><i class="fa fa-paper-plane-o"></i> E-mail log</a>
+                                </li>
+                                <li role="presentation" data-ui-sref-active="active">
+                                    <a data-ui-sref="events.single.vendor-application({eventName:ctrl.eventName})" ng-click="ctrl.menuCollapsed = true"><i class="fa fa-briefcase"></i> E-mail log</a>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav visible-sm visible-xs">
