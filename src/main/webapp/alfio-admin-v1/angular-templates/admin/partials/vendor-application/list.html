@@ -17,22 +17,20 @@
                     </div>
                     <div class="input-group">
                         <!-- Filters -->
-<select ng-model="ctrl.statusFilter">
-    <option value="">All Statuses</option>
-    <option value="pending">Pending</option>
-    <option value="approved">Approved</option>
-    <option value="rejected">Rejected</option>
-</select>
-
-
+                        <select class="form-select" ng-model="ctrl.statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="paid">Paid</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
                     </div>
                     <div class="input-group">
-                        <select ng-model="ctrl.boothTypeFilter">
-    <option value="">All Booth Types</option>
-    <option value="standard">Standard</option>
-    <option value="premium">Premium</option>
-    <option value="artist">Artist</option>
-</select>
+                        <select class="form-select" ng-model="ctrl.boothTypeFilter">
+                            <option value="">All Booth Types</option>
+                            <option data-ng-repeat="boothType in ctrl.boothTypes" value="{{boothType.id}}">{{boothType.name}}</option>
+                        </select>
                     </div>
                 </div>
             </div>
