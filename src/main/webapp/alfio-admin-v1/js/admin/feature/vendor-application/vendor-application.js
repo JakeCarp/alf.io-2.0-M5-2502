@@ -74,11 +74,11 @@
     function VendorApplicationService($http, HttpErrorHandler) {
 
         this.loadApplicationList = function(type, publicIdentifier, page, search) {
-            return $http.get('/admin/api/'+type+'/'+publicIdentifier+'/vendor-application', {params: {page: page, search: search}}).error(HttpErrorHandler.handle);
+            return $http.get('/admin/api/'+publicIdentifier+'/vendor-application', {params: {page: page, search: search}}).error(HttpErrorHandler.handle);
         };
 
         this.loadApplicationDetail = function(type, publicIdentifier, applicationId) {
-            return $http.get('/admin/api/'+type+'/'+publicIdentifier+'/vendor-application/'+applicationId).error(HttpErrorHandler.handle);
+            return $http.get('/admin/api/'+publicIdentifier+'/vendor-application/'+applicationId).error(HttpErrorHandler.handle);
         }
     }
 
