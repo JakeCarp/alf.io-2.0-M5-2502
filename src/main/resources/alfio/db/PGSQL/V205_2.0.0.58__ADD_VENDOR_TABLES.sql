@@ -34,8 +34,11 @@ CREATE TABLE IF NOT EXISTS vendor_booth_types (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid (),
     name TEXT NOT NULL,
     description TEXT,
-    price NUMERIC(10, 2) NOT NULL
-);
+    event_id INTEGER NOT NULL REFERENCES event (id) ON DELETE CASCADE;
+
+organization_id INTEGER NOT NULL REFERENCES organization (id) ON DELETE CASCADE;
+
+price NUMERIC(10, 2) NOT NULL );
 
 -- Create vendor_applications table
 CREATE TABLE IF NOT EXISTS vendor_applications (
@@ -44,9 +47,14 @@ CREATE TABLE IF NOT EXISTS vendor_applications (
     store_name TEXT NOT NULL,
     email TEXT NOT NULL,
     phone_number TEXT,
+    description TEXT,
     instagram TEXT,
     portfolio TEXT,
-    booth_type_id UUID REFERENCES vendor_booth_types (id) ON DELETE SET NULL,
+    event_id INTEGER NOT NULL REFERENCES event (id) ON DELETE CASCADE;
+
+organization_id INTEGER NOT NULL REFERENCES organization (id) ON DELETE CASCADE;
+
+booth_type_id UUID REFERENCES vendor_booth_types (id) ON DELETE SET NULL,
     status TEXT NOT NULL DEFAULT 'pending',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

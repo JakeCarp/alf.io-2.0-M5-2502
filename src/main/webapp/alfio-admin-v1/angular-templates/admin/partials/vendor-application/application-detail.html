@@ -1,0 +1,28 @@
+<div class="page-header">
+    <h1>Vendor Application Detail</h1>
+</div>
+<div class="container">
+    <dl data-ng-if="detailCtrl.application">
+        <dt>Applicant Name</dt>
+        <dd>{{detailCtrl.application.applicantName}}</dd>
+        <dt>Store Name</dt>
+        <dd>{{detailCtrl.application.storeName}}</dd>
+        <dt>Contact Email</dt>
+        <dd>{{detailCtrl.application.contactEmail}}</dd>
+        <dt>Phone Number</dt>
+        <dd>{{detailCtrl.application.phoneNumber}}</dd>
+        <dt>Instagram</dt>
+        <dd><a href="{{detailCtrl.application.instagram}}" target="_blank">{{detailCtrl.application.instagram}}</a></dd>
+        <dt>Portfolio</dt>
+        <dd><a href="{{detailCtrl.application.portfolio}}" target="_blank">{{detailCtrl.application.portfolio}}</a></dd>
+        <dt>Booth Type</dt>
+        <dd>{{detailCtrl.application.boothType}}</dd>
+        <dt>Status</dt>
+        <dd>{{detailCtrl.application.status}}</dd>
+        <dt>Application Date</dt>
+        <dd>{{detailCtrl.application.applicationDate | formatDate}}</dd>
+    </dl>
+    <div class="text-center wMarginBottom">
+        <a class="btn btn-default" href="#" data-ui-sref="^.vendor-applications({eventName: detailCtrl.publicIdentifier})">back to list</a>
+    </div>
+</div>
