@@ -74,7 +74,7 @@
     function VendorApplicationService($http, HttpErrorHandler) {
 
         this.loadApplicationList = function(type, publicIdentifier, page, search) {
-            return $http.get('/admin/api/'+publicIdentifier+'/vendor-application', {params: {page: page, search: search}}).error(HttpErrorHandler.handle);
+            return $http.get('/admin/api/'+publicIdentifier+'/vendor-application', {params: {page: page, pageSize: 50, search: search}}).error(HttpErrorHandler.handle);
         };
 
         this.loadApplicationDetail = function(type, publicIdentifier, applicationId) {
