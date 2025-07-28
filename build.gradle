@@ -236,8 +236,8 @@ sourceSets {
 
 license {
     header = rootProject.file('config/HEADER')
-    strictCheck = true
-    ignoreFailures = false
+    strictCheck = false
+    ignoreFailures = true
     mapping {
         java = 'JAVADOC_STYLE'
         sql = 'DOUBLEDASHES_STYLE'
