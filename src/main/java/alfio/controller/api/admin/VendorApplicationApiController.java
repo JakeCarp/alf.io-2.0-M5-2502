@@ -75,16 +75,16 @@ public class VendorApplicationApiController {
     }
 
     @GetMapping("")
-    public PageAndContent<List<Pair<UUID, String>>> getVendorApplicationsByEventId(
+    public PageAndContent<List<VendorApplication>> getVendorApplicationsByEventId(
             @PathVariable String eventName,
             @RequestParam int page,
             @RequestParam int pageSize) {
         List<VendorApplication> applications = vendorApplicationManager.getVendorApplicationsByEvent(eventName);
-
-        List<Pair<UUID, String>> content = applications.stream()
-                .map(app -> Pair.of(app.getId(), app.getApplicantName()))
+        List<VendorApplication> content = applications.stream()
+                .skip((long) page * pageSize)
+                .limit(pageSize)
                 .collect(Collectors.toList());
-        return new PageAndContent<List<Pair<UUID, String>>>(content, page);
+        return new PageAndContent<List<VendorApplication>>(content, page);
     }
 
     @GetMapping("/{id}")
