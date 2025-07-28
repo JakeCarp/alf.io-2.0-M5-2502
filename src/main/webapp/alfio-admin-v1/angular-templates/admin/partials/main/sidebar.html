@@ -31,14 +31,14 @@
                 <h4 class="text-muted">Actions</h4>
             </li>
             <li data-ng-if="!ctrl.isDetail">
-                <a data-ui-sref="events.single.detail({eventName: ctrl.event.shortName})"><i class="fa fa-arrow-left"></i> back to event detail</a>
+                <a data-ui-sref="events.single.detail({eventName: ctrl.event.shortName})"><i class="fa fa-arrow-left"></i> back to event details</a>
             </li>
             <li><a data-ui-sref="events.single.create-reservation({eventName: ctrl.event.shortName})"><i class="fa fa-magic"></i> create reservation</a></li>
             <li><a data-ui-sref="events.single.checkIn({eventName: ctrl.event.shortName})"><i class="fa fa-check"></i> Check-in</a></li>
         </ul>
         <ul class="list-unstyled" ng-if="ctrl.owner">
             <li data-ng-if="ctrl.internal && ctrl.isDetail">
-                <label class="control-label text-muted" for="sidebarCategoryFilter"><h4>Categories</h4></label>
+                <label class="control-label text-muted" for="sidebarCategoryFilter"><h4>Ticket Categories</h4></label>
             </li>
             <li data-ng-if="ctrl.internal && ctrl.isDetail">
                 <form class="form-inline">
@@ -64,7 +64,7 @@
             <li>
                 <ul class="nav nav-pills nav-stacked" data-ng-if="ctrl.internal">
                     <li data-ng-if="!ctrl.isDetail">
-                        <a data-ui-sref="events.single.detail({eventName: ctrl.event.shortName})"><i class="fa fa-arrow-left"></i> back to event detail</a>
+                        <a data-ui-sref="events.single.detail({eventName: ctrl.event.shortName})"><i class="fa fa-arrow-left"></i> back to event details</a>
                     </li>
                     <li role="presentation" data-ui-sref-active="active">
                         <a ui-sref="events.single.dataToCollect({eventName: ctrl.event.shortName})"><i class="fa fa-info-circle"></i> Attendees' data to collect</a>
@@ -73,7 +73,7 @@
                         <a ui-sref="events.single.promoCodes({eventName: ctrl.event.shortName})"><i class="fa fa-percent"></i> {{ctrl.promoCodeDescription}} Codes</a>
                     </li>
                     <li role="presentation" data-ui-sref-active="active" data-ng-if="!ctrl.freeOfCharge">
-                        <a ui-sref="events.single.additionalServices({eventName: ctrl.event.shortName})"><i class="fa fa-money"></i> Additional options</a>
+                        <a ui-sref="events.single.additionalServices({eventName: ctrl.event.shortName})"><i class="fa fa-money"></i> Additional Charge Options</a>
                     </li>
                     <li role="presentation" data-ui-sref-active="active">
                         <a ui-sref="events.single.polls-list({eventName: ctrl.event.shortName})"><i class="fa fa-bar-chart-o"></i> Polls</a>
