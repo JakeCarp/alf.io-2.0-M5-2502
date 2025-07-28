@@ -36,7 +36,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/admin/api/event/{eventName}/vendor-application")
+@RequestMapping("/admin/api/{eventName}/vendor-application")
 public class VendorApplicationApiController {
     private final VendorApplicationManager vendorApplicationManager;
 
