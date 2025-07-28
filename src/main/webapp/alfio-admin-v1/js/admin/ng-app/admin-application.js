@@ -8,7 +8,7 @@
     var ERROR_CODES = { DUPLICATE:'duplicate', MAX_LENGTH:'maxlength', MIN_LENGTH:'minlength'};
     
     var admin = angular.module('adminApplication', ['ngSanitize','ui.bootstrap', 'ui.router', 'adminDirectives',
-        'adminServices', 'utilFilters', 'ngMessages', 'ngFileUpload', 'nzToggle', 'alfio-email', 'alfio-util', 'alfio-configuration', 'alfio-event-statistic',
+        'adminServices', 'utilFilters', 'ngMessages', 'ngFileUpload', 'nzToggle', 'alfio-email', 'alfio-vendor', 'alfio-util', 'alfio-configuration', 'alfio-event-statistic',
         'ui.ace', 'checklist-model', 'group', 'subscriptions', angularDragula(angular)]);
 
     var loadEvent = {
@@ -193,13 +193,6 @@
             .state('events.single.donations', {
                 url: '/donations',
                 template: '<alfio-additional-item-list data-public-identifier="{{$ctrl.loadEvent.shortName}}" data-type="DONATION" data-title="Donation options" data-icon="gift"></alfio-additional-item-list>',
-                controller: loadEventCtrl,
-                controllerAs: '$ctrl',
-                resolve: loadEvent
-            })
-            .state('events.single.vendor-applications', {
-                url: '/vendor-applications',
-                template: '<vendor-applications event="$ctrl.loadEvent"></vendor-applications>',
                 controller: loadEventCtrl,
                 controllerAs: '$ctrl',
                 resolve: loadEvent
