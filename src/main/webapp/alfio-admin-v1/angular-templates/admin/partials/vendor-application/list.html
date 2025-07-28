@@ -19,11 +19,11 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="wMarginTop wMarginBottom" data-ng-if="ctrl.vendorApplications.length == 0">
+        <div class="wMarginTop wMarginBottom" data-ng-if="ctrl.applications.length == 0">
             <h3><i class="fa fa-close"></i> No data found.</h3>
         </div>
         
-        <div class="table-responsive" data-ng-if="ctrl.vendorApplications.length > 0">
+        <div class="table-responsive" data-ng-if="ctrl.applications.length > 0">
             <table class="table">
                 <thead>
                 <th>Applicant Name</th>
@@ -37,7 +37,7 @@
                 <th>Application Date</th>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="application in ctrl.vendorApplications" data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
+                <tr data-ng-repeat="application in ctrl.applications" data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.applicantName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.storeName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.contactEmail}}</td>
