@@ -197,6 +197,13 @@
                 controllerAs: '$ctrl',
                 resolve: loadEvent
             })
+            .state('events.single.vendor-applications', {
+                url: '/vendor-applications',
+                template: '<vendor-applications event="$ctrl.loadEvent"></vendor-applications>',
+                controller: loadEventCtrl,
+                controllerAs: '$ctrl',
+                resolve: loadEvent
+            })
             .state('events.single.checkIn', {
                 url: '/check-in',
                 templateUrl: BASE_STATIC_URL + '/event/check-in.html',
