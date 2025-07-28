@@ -15,6 +15,25 @@
                         <div class="input-group-addon"><i class="fa fa-search"></i></div>
                         <input type="text" class="form-control" placeholder="Filter table" data-ng-model="ctrl.toSearch" ng-change="ctrl.updateFilteredData()" ng-model-options='{ debounce: 1000 }'>
                     </div>
+                    <div class="input-group">
+                        <!-- Filters -->
+<select ng-model="ctrl.statusFilter">
+    <option value="">All Statuses</option>
+    <option value="pending">Pending</option>
+    <option value="approved">Approved</option>
+    <option value="rejected">Rejected</option>
+</select>
+
+
+                    </div>
+                    <div class="input-group">
+                        <select ng-model="ctrl.boothTypeFilter">
+    <option value="">All Booth Types</option>
+    <option value="standard">Standard</option>
+    <option value="premium">Premium</option>
+    <option value="artist">Artist</option>
+</select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,7 +56,7 @@
                 <th>Application Date</th>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="application in ctrl.applications" data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
+                <tr :data-ng-repeat="ctrl.filteredApplications() ? application in ctrl.filteredApplications() : application in applications " data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.applicantName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.storeName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.contactEmail}}</td>

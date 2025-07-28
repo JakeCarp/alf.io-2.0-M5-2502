@@ -35,6 +35,8 @@
         var currentSearch = $location.search();
         ctrl.currentPage = currentSearch.page || 1;
         ctrl.toSearch = currentSearch.search || '';
+         ctrl.statusFilter = '';
+        ctrl.boothTypeFilter = ''
 
         ctrl.applications = [];
         ctrl.publicIdentifier = $stateParams.eventName || $stateParams.subscriptionId;
@@ -55,6 +57,14 @@
             });
         }
 
+        ctrl.filteredApplications = function () {
+        return ctrl.applications.filter(function (app) {
+        const matchesStatus = !ctrl.statusFilter || app.status === ctrl.statusFilter;
+        const matchesBooth = !ctrl.boothTypeFilter || app.boothType === ctrl.boothTypeFilter;
+        return matchesStatus && matchesBooth;
+    });
+};
+
 
     }
 
@@ -62,6 +72,8 @@
 
     function VendorApplicationDetailController(VendorApplicationService, $stateParams) {
         var self = this;
+
+       
         self.publicIdentifier = $stateParams.eventName;
         self.contextType = $stateParams.eventName;
         VendorApplicationService.loadApplicationDetail(self.contextType, self.publicIdentifier, $stateParams.applicationId).success(function(result) {
