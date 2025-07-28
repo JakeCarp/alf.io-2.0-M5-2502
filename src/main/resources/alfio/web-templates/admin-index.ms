@@ -52,6 +52,7 @@
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/bower_components/dragula.js/dist/dragula.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/bower_components/angularjs-dragula/dist/angularjs-dragula.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/jsqrcode/jsqrcode.min.js"></script>
+    <script nonce="{{nonce}} src="{{contextPath}}/resources/js/admin/feature/vendor-application/vendor-application.js></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/ng-app/admin-application.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/directive/admin-directive.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/filter/util.js"></script>
@@ -60,7 +61,6 @@
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/service/organization.service.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/service/user.service.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/email/email-log.js"></script>
-    <script nonce="{{nonce}} src="{{contextPath}}/resources/js/admin/feature/vendor-application/vendor-application.js></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/util/file-upload.js"></script>
 
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/configuration/configuration.js"></script>
