@@ -42,7 +42,7 @@
                     <td>{{::boothType.description}}</td>
                     <td>{{::boothType.price | currency}}</td>
                     <td>
-                        <button class="btn btn-primary btn-sm" :ng-click="ctrl.addOrEditBoothType(boothType)"><i class="fa fa-pencil"></i> Edit</button>
+                        <button class="btn btn-primary btn-sm" ng-click="ctrl.addOrEditBoothType(boothType)"><i class="fa fa-pencil"></i> Edit</button>
                         <button class="btn btn-danger btn-sm" ng-click="ctrl.deleteBoothType(boothType.id)">Delete</button>
                     </td>
                 </tr>

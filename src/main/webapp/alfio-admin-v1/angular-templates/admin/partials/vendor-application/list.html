@@ -54,7 +54,7 @@
                 <th>Application Date</th>
                 </thead>
                 <tbody>
-                <tr :data-ng-repeat="ctrl.filteredApplications() ? application in ctrl.filteredApplications() : application in applications " data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
+                <tr data-ng-repeat="ctrl.filteredApplications() ? application in ctrl.filteredApplications() : application in applications " data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.applicantName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.storeName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.contactEmail}}</td>

@@ -41,7 +41,7 @@
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
         ctrl.loadData = loadData();
-        ctrl.addOrEditBoothType = addOrEditBoothType();
+        ctrl.addOrEditBoothType = addOrEditBoothType;
         ctrl.updateFilteredData = function () {
             loadData();
         }
