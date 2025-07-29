@@ -7,6 +7,9 @@
         <div class="page-header">
             <h3><i class="fa fa-list"></i> List of Vendor Booth Types</h3>
         </div>
+        <div>
+            <button class="btn btn-success" ng-click="ctrl.addOrEditBoothType()">Add new booth type</button>
+        </div>
 
         <div class="row">
             <div class="col-xs-12 col-md-4">
@@ -45,9 +48,6 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="text-center wMarginBottom">
-                <button class="btn btn-success" ng-click="ctrl.addOrEditBoothType()">Add new booth type</button>
-            </div>
             <div class="text-center wMarginBottom" data-ng-if="ctrl.contextType === 'event'">
                 <a href="#" data-ui-sref="^.detail" class="btn btn-default">back</a>
             </div>
