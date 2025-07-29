@@ -57,7 +57,7 @@
     }
 
 
-    VendorBoothTypeListController.$inject = ['VendorBoothTypeService', '$stateParams'];
+    VendorBoothTypeListController.$inject = ['VendorBoothTypeService', '$location', '$stateParams'];
 
     function VendorBoothTypeDetailController(VendorBoothTypeService, $stateParams) {
         var detailCtrl = this;
