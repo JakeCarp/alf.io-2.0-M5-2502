@@ -30,7 +30,7 @@
             }
         });
     
-    function VendorBoothTypeListController(VendorBoothTypeService, $location, $stateParams) {
+    function VendorBoothTypeListController(VendorBoothTypeService, $uibModal, $location, $stateParams) {
         var ctrl = this;
 
         var currentSearch = $location.search();
@@ -41,6 +41,7 @@
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
         ctrl.loadData = loadData();
+        ctrl.addOrEditBoothType = addOrEditBoothType();
         ctrl.updateFilteredData = function () {
             loadData();
         }
@@ -54,6 +55,37 @@
                 ctrl.totalItems = results.right;
             });
         }
+
+        function addOrEditBoothType(boothType) {
+            $uibModal.open({
+                size: 'lg',
+                templateUrl: window.ALFIO_CONTEXT_PATH + '/resources/js/admin/feature/vendor-booth-type/vendor-booth-modal.html',
+                backdrop: 'static',
+                controller: function ($scope) {
+                    $scope.boothType = boothType || {};
+                    $scope.save = function () {
+                        if ($scope.boothType.id) {
+                            VendorBoothTypeService.updateBoothType($scope.boothType).then(function () {
+                                loadData();
+                                $scope.$close();
+                            }, function (error) {
+                                console.error('Error updating booth type:', error);
+                            });
+                        } else {
+                            VendorBoothTypeService.createBoothType($scope.boothType).then(function () {
+                                loadData();
+                                $scope.$close();
+                            }, function (error) {
+                                console.error('Error creating booth type:', error);
+                            });
+                        }
+                    };
+                    $scope.cancel = function () {
+                        $scope.$dismiss();
+                    };
+                }
+            });
+        };
     }
 
 

@@ -39,14 +39,14 @@
                     <td>{{::boothType.description}}</td>
                     <td>{{::boothType.price | currency}}</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" data-ui-sref="^.edit-booth-type({id: boothType.id})">Edit</a>
+                        <button class="btn btn-primary btn-sm" :ng-click="ctrl.addOrEditBoothType(boothType)"><i class="fa fa-pencil"></i> Edit</button>
                         <button class="btn btn-danger btn-sm" ng-click="ctrl.deleteBoothType(boothType.id)">Delete</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
             <div class="text-center wMarginBottom">
-                <a class="btn btn-default" href="#" data-ui-sref="^.add-booth-type">Add New Booth Type</a>
+                <button class="btn btn-success" ng-click="ctrl.addOrEditBoothType()">Add new booth type</button>
             </div>
             <div class="text-center wMarginBottom" data-ng-if="ctrl.contextType === 'event'">
                 <a href="#" data-ui-sref="^.detail" class="btn btn-default">back</a>

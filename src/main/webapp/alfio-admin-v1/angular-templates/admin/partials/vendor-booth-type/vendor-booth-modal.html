@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3 data-ng-if="!vendorBoothType.id">Insert new Vendor Booth Type</h3>
+    <h3 data-ng-if="vendorBoothType.id">Edit Vendor Booth Type</h3>
+</div>
+<form name="vendorBoothTypeForm" data-ng-submit="insertVendorBoothType()">
+    <div class="modal-body">
+        <div class="form-group" bs-form-error="vendorBoothType.name">
+            <label for="name">Name</label>
+            <input type="text" id="name" data-ng-model="vendorBoothType.name" class="form-control" required minlength="3"/>
+            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.name" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+
+        <div class="form-group" bs-form-error="vendorBoothType.description">
+            <label for="description">Description</label>
+            <input type="text" id="description" data-ng-model="vendorBoothType.description" class="form-control" maxlength="1024"/>
+            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.description" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+
+        <div class="form-group" bs-form-error="vendorBoothType.price">
+            <label for="price">Price</label>
+            <input type="number" id="price" data-ng-model="vendorBoothType.price" class="form-control" required/>
+            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.price" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="$dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-ng-disabled="vendorBoothTypeForm.$invalid || loading">
+            <span data-ng-if="!loading">Save</span>
+            <span data-ng-if="loading"><i class="fa fa-spinner fa-spin"></i> Saving...</span>
+        </button>
+</form>
