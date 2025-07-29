@@ -2,6 +2,7 @@ package alfio.controller.api.admin;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import alfio.controller.api.support.PageAndContent;
 import alfio.manager.VendorBoothTypeManager;
 import alfio.model.vendor.VendorBoothType;
 import lombok.RequiredArgsConstructor;
@@ -60,10 +62,17 @@ public class VendorBoothTypeApiController {
     }
 
     @GetMapping("")
-    public List<VendorBoothType> getVendorBoothTypes(
-            @PathVariable String eventName) {
+    public PageAndContent<List<VendorBoothType>> getVendorBoothTypes(
+            @PathVariable String eventName,
+            @RequestParam int page,
+            @RequestParam int pageSize) {
+        List<VendorBoothType> vendorBoothTypes = vendorBoothTypeManager.getVendorBoothTypesByEventId(eventName);
+        List<VendorBoothType> content = vendorBoothTypes.stream()
+                .skip((long) page * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
 
-        return vendorBoothTypeManager.getVendorBoothTypesByEventId(eventName);
+        return new PageAndContent<List<VendorBoothType>>(content, page);
     }
 
 }
