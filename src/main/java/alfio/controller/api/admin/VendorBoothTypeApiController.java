@@ -65,7 +65,7 @@ public class VendorBoothTypeApiController {
     public PageAndContent<List<VendorBoothType>> getVendorBoothTypes(
             @PathVariable String eventName,
             @RequestParam int page,
-            @RequestParam int pageSize) {
+            @RequestParam(defaultValue = "50") int pageSize) {
         List<VendorBoothType> vendorBoothTypes = vendorBoothTypeManager.getVendorBoothTypesByEventId(eventName);
         List<VendorBoothType> content = vendorBoothTypes.stream()
                 .skip((long) page * pageSize)
