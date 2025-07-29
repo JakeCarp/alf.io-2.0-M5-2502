@@ -52,15 +52,15 @@ public class VendorApplication {
     public VendorApplication(
             @Column("id") UUID id,
             @Column("status") ApplicationStatus status,
-            @Column("applicantName") String applicantName,
-            @Column("storeName") String storeName,
+            @Column("applicant_name") String applicantName,
+            @Column("store_name") String storeName,
             @Column("email") String email,
-            @Column("phoneNumber") String phoneNumber,
+            @Column("phone_number") String phoneNumber,
             @Column("description") String description,
             @Column("instagram") String instagram,
             @Column("portfolio") String portfolio,
             @Column("booth_type_id") int boothTypeId,
-            @Column("createdAt") Date createdAt,
+            @Column("created_at") Date createdAt,
             @Column("event_id") int eventId,
             @Column("organization_id") int organizationId) {
         this.id = id;
