@@ -44,7 +44,7 @@ public class VendorApplication {
     private final String description;
     private final String instagram;
     private final String portfolio;
-    private final int boothTypeId;
+    private final UUID boothTypeId;
     private final Date createdAt;
     private final int eventId;
     private final int organizationId;
@@ -59,7 +59,7 @@ public class VendorApplication {
             @Column("description") String description,
             @Column("instagram") String instagram,
             @Column("portfolio") String portfolio,
-            @Column("booth_type_id") int boothTypeId,
+            @Column("booth_type_id") UUID boothTypeId,
             @Column("created_at") Date createdAt,
             @Column("event_id") int eventId,
             @Column("organization_id") int organizationId) {
