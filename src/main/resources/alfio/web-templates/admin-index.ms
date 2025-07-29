@@ -61,6 +61,7 @@
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/service/user.service.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/email/email-log.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/vendor-application/vendor-application.js"></script>
+    <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/vendor-booth-type/vendor-booth-type.js"></script>
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/util/file-upload.js"></script>
 
     <script nonce="{{nonce}}" src="{{contextPath}}/resources/js/admin/feature/configuration/configuration.js"></script>
@@ -204,6 +205,9 @@
                                 </li>
                                 <li role="presentation" data-ui-sref-active="active">
                                     <a data-ui-sref="events.single.vendor-application({eventName:ctrl.eventName})" ng-click="ctrl.menuCollapsed = true"><i class="fa fa-briefcase"></i> Vendor Applications</a>
+                                </li>
+                                <li role="presentation" data-ui-sref-active="active">
+                                    <a data-ui-sref="events.single.vendor-booth-types({eventName:ctrl.event.shortName})" ng-click="ctrl.menuCollapsed = true"><i class="fa fa-list"></i> Vendor Booth Types</a>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav visible-sm visible-xs">
