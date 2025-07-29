@@ -59,7 +59,7 @@
         function addOrEditBoothType(boothType) {
             $uibModal.open({
                 size: 'lg',
-                templateUrl: window.ALFIO_CONTEXT_PATH + '/resources/js/admin/feature/vendor-booth-type/vendor-booth-modal.html',
+                templateUrl: window.ALFIO_CONTEXT_PATH + '/resources/js/admin/partials/vendor-booth-type/vendor-booth-modal.html',
                 backdrop: 'static',
                 controller: function ($scope) {
                     $scope.boothType = boothType || {};
