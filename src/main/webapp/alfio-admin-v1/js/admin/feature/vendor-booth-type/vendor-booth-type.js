@@ -89,7 +89,7 @@
     }
 
 
-    VendorBoothTypeListController.$inject = ['VendorBoothTypeService', '$location', '$stateParams'];
+    VendorBoothTypeListController.$inject = ['VendorBoothTypeService', '$uibModal', '$location', '$stateParams'];
 
     function VendorBoothTypeDetailController(VendorBoothTypeService, $stateParams) {
         var detailCtrl = this;
