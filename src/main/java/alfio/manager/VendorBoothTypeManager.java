@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import alfio.model.vendor.VendorBoothType;
 import alfio.repository.EventRepository;
 import alfio.repository.VendorBoothTypeRepository;
+import alfio.repository.VendorApplicationRepository;
+import alfio.model.vendor.VendorApplication;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
@@ -17,8 +19,10 @@ import lombok.AllArgsConstructor;
 public class VendorBoothTypeManager {
     private final VendorBoothTypeRepository boothTypeRepository;
     private final EventRepository eventRepository;
+    private final VendorApplicationRepository vendorApplicationRepository;
 
-    public VendorBoothType createVendorBoothType(String name, String description, double price, String eventName) {
+    public VendorBoothType createVendorBoothType(String name, String description, int stock, double price,
+            String eventName) {
         var eventOptional = eventRepository.findOptionalEventAndOrganizationIdByShortName(eventName);
         if (eventOptional.isEmpty()) {
             throw new IllegalArgumentException("Event not found");
@@ -26,7 +30,8 @@ public class VendorBoothTypeManager {
         var eventId = eventOptional.get().getId();
 
         var result = boothTypeRepository.insert(name, description, price, eventId);
-        var out = new VendorBoothType(result.getKey(), name, description, price, eventId);
+        var out = new VendorBoothType(result.getKey(), name, description, VendorBoothType.BoothTypeStatus.ACTIVE, stock,
+                price, eventId, List.of());
         return out;
     }
 
@@ -41,7 +46,12 @@ public class VendorBoothTypeManager {
         }
         var eventId = eventOptional.get().getId();
 
-        return boothTypeRepository.findByEventId(eventId);
+        var boothTypes = boothTypeRepository.findByEventId(eventId);
+        boothTypes.forEach(boothType -> {
+            var approvedApplications = vendorApplicationRepository.findApprovedByBoothTypeId(boothType.getId());
+            boothType.setApprovedApplications(approvedApplications);
+        });
+        return boothTypes;
     }
 
     public boolean updateVendorBoothType(UUID id, String name, String description, double price) {

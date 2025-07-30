@@ -33,6 +33,8 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Status</th>
+                    <th>Approved Applications</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -41,6 +43,8 @@
                     <td>{{::boothType.name}}</td>
                     <td>{{::boothType.description}}</td>
                     <td>{{::boothType.price | currency}}</td>
+                    <td>{{::boothType.status}}</td>
+                    <td>{{::boothType.approvedApplications.length}}/{{::boothType.stock}}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" ng-click="ctrl.addOrEditBoothType(boothType)"><i class="fa fa-pencil"></i> Edit</button>
                         <button class="btn btn-danger btn-sm" ng-click="ctrl.deleteBoothType(boothType.id)">Delete</button>

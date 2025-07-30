@@ -19,6 +19,8 @@ package alfio.repository;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
+
 import alfio.model.vendor.VendorApplication;
 import ch.digitalfondue.npjt.*;
 
@@ -63,5 +65,10 @@ public interface VendorApplicationRepository {
                         delete from vendor_applications where id = :id
                         """)
         int delete(@Bind("id") Long id);
+
+        @Query("""
+                        select * from vendor_applications where vendor_booth_type_id = :boothTypeId and status = 'APPROVED'
+                        """)
+        List<VendorApplication> findApprovedByBoothTypeId(@Bind("boothTypeId") UUID boothTypeId);
 
 }
