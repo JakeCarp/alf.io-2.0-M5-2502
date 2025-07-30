@@ -56,7 +56,7 @@
             });
         }
 
-        function addOrEditBoothType(boothType) {
+        function addOrEditBoothType(boothType = {}) {
             $uibModal.open({
                 size: 'lg',
                 templateUrl: window.ALFIO_CONTEXT_PATH + '/resources/angular-templates/admin/partials/vendor-booth-type/vendor-booth-modal.html',
