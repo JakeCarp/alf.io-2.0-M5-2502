@@ -45,7 +45,7 @@ public class VendorBoothTypeManager {
         if (eventOptional.isEmpty()) {
             throw new IllegalArgumentException("Event not found");
         }
-        var eventId = eventOptional.get().getId();
+        int eventId = eventOptional.get().getId();
 
         var boothTypes = boothTypeRepository.findByEventId(eventId);
         boothTypes.forEach(boothType -> {
