@@ -2,7 +2,7 @@
     <h3 data-ng-if="!vendorBoothType.id">Insert new Vendor Booth Type</h3>
     <h3 data-ng-if="vendorBoothType.id">Edit Vendor Booth Type</h3>
 </div>
-<form name="vendorBoothTypeForm" data-ng-submit="insertVendorBoothType()">
+<form name="vendorBoothTypeForm" data-ng-submit="ctrl.addOrEditBoothType()">
     <div class="modal-body">
         <div class="form-group" bs-form-error="vendorBoothType.name">
             <label for="name">Name</label>

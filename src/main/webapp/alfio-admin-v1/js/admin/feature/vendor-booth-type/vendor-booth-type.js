@@ -37,6 +37,7 @@
         ctrl.currentPage = currentSearch.page || 1;
         ctrl.toSearch = currentSearch.search || '';
         ctrl.boothTypes = [];
+        ctrl.vendorBoothType = {};
         ctrl.publicIdentifier = $stateParams.eventName || $stateParams.subscriptionId;
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
