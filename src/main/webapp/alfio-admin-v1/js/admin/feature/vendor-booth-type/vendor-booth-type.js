@@ -39,6 +39,7 @@
         ctrl.boothTypes = [];
         ctrl.vendorBoothType = {};
         ctrl.publicIdentifier = $stateParams.eventName || $stateParams.subscriptionId;
+        VendorBoothTypeService.setPublicIdentifier(ctrl.publicIdentifier);
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
         ctrl.loadData = loadData();
@@ -52,7 +53,7 @@
 
         function loadData() {
             $location.search({ page: ctrl.currentPage, search: ctrl.toSearch });
-            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.publicIdentifier, ctrl.currentPage - 1, ctrl.toSearch).success(function (results) {
+            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.currentPage - 1, ctrl.toSearch).success(function (results) {
                 ctrl.boothTypes = results.left;
                 ctrl.totalItems = results.right;
             });
@@ -67,14 +68,14 @@
                     $scope.boothType = boothType || {};
                     $scope.save = function () {
                         if ($scope.boothType.id) {
-                            VendorBoothTypeService.updateBoothType($scope.boothType, ctrl.publicIdentifier).then(function () {
+                            VendorBoothTypeService.updateBoothType($scope.boothType).then(function () {
                                 loadData();
                                 $scope.$close();
                             }, function (error) {
                                 console.error('Error updating booth type:', error);
                             });
                         } else {
-                            VendorBoothTypeService.createBoothType($scope.boothType, ctrl.publicIdentifier).then(function () {
+                            VendorBoothTypeService.createBoothType($scope.boothType).then(function () {
                                 loadData();
                                 $scope.$close();
                             }, function (error) {
@@ -116,7 +117,12 @@
 
 
     function VendorBoothTypeService($http) {
-        this.loadBoothTypeList = function (contextType, publicIdentifier, page, search) {
+        let publicIdentifier = null;
+
+    this.setPublicIdentifier = function (id) {
+        publicIdentifier = id;
+    };
+        this.loadBoothTypeList = function (contextType, page, search) {
             return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
                 params: {
                     contextType: contextType,
@@ -127,16 +133,16 @@
             });
         };
 
-        this.loadBoothTypeDetail = function (boothTypeId, publicIdentifier) {
+        this.loadBoothTypeDetail = function (boothTypeId) {
             return $http.get('/admin/api/' + publicIdentifier + '/' + boothTypeId + '/vendor-booth-type');
         };
-        this.createBoothType = function (boothType, publicIdentifier) {
+        this.createBoothType = function (boothType) {
             return $http.post('/admin/api/' + publicIdentifier + '/vendor-booth-type', boothType);
         };
-        this.updateBoothType = function (boothType, publicIdentifier) {
+        this.updateBoothType = function (boothType) {
             return $http.put('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothType.id, boothType);
         };
-        this.deleteBoothType = function (boothTypeId, publicIdentifier) {
+        this.deleteBoothType = function (boothTypeId) {
             return $http.delete('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothTypeId);
         };
     }
