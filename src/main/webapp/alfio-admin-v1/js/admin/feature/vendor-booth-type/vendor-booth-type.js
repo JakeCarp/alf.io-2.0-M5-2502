@@ -127,16 +127,16 @@
             });
         };
 
-        this.loadBoothTypeDetail = function (boothTypeId) {
+        this.loadBoothTypeDetail = function (boothTypeId, publicIdentifier) {
             return $http.get('/admin/api/' + publicIdentifier + '/' + boothTypeId + '/vendor-booth-type');
         };
-        this.createBoothType = function (boothType) {
+        this.createBoothType = function (boothType, publicIdentifier) {
             return $http.post('/admin/api/' + publicIdentifier + '/vendor-booth-type', boothType);
         };
-        this.updateBoothType = function (boothType) {
+        this.updateBoothType = function (boothType, publicIdentifier) {
             return $http.put('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothType.id, boothType);
         };
-        this.deleteBoothType = function (boothTypeId) {
+        this.deleteBoothType = function (boothTypeId, publicIdentifier) {
             return $http.delete('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothTypeId);
         };
     }
