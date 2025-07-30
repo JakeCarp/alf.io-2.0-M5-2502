@@ -42,6 +42,7 @@
         ctrl.itemsPerPage = 50;
         ctrl.loadData = loadData();
         ctrl.addOrEditBoothType = addOrEditBoothType;
+        ctrl.deleteBoothType = deleteBoothType;
         ctrl.updateFilteredData = function () {
             loadData();
         }
@@ -86,6 +87,16 @@
                 }
             });
         };
+
+        function deleteBoothType(boothType) {
+            if (confirm('Are you sure you want to delete this booth type?')) {
+                VendorBoothTypeService.deleteBoothType(boothType.id).then(function () {
+                    loadData();
+                }, function (error) {
+                    console.error('Error deleting booth type:', error);
+                });
+            }
+        }
     }
 
 
@@ -117,6 +128,15 @@
 
         this.loadBoothTypeDetail = function (boothTypeId) {
             return $http.get('/admin/api/' + publicIdentifier + '/' + boothTypeId + '/vendor-booth-type');
+        };
+        this.createBoothType = function (boothType) {
+            return $http.post('/admin/api/' + publicIdentifier + '/vendor-booth-type', boothType);
+        };
+        this.updateBoothType = function (boothType) {
+            return $http.put('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothType.id, boothType);
+        };
+        this.deleteBoothType = function (boothTypeId) {
+            return $http.delete('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothTypeId);
         };
     }
 
