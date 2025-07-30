@@ -29,9 +29,10 @@ public class VendorBoothTypeApiController {
             @PathVariable String eventName,
             @RequestParam String name,
             @RequestParam String description,
+            @RequestParam int stock,
             @RequestParam double price) {
 
-        vendorBoothTypeManager.createVendorBoothType(name, description, price, eventName);
+        vendorBoothTypeManager.createVendorBoothType(name, description, stock, price, eventName);
     }
 
     @PutMapping("/{id}")
@@ -40,9 +41,11 @@ public class VendorBoothTypeApiController {
             @PathVariable UUID id,
             @RequestParam String name,
             @RequestParam String description,
+            @RequestParam VendorBoothType.BoothTypeStatus status,
+            @RequestParam int stock,
             @RequestParam double price) {
 
-        vendorBoothTypeManager.updateVendorBoothType(id, name, description, price);
+        vendorBoothTypeManager.updateVendorBoothType(id, name, description, status, stock, price);
     }
 
     @DeleteMapping("/{id}")
