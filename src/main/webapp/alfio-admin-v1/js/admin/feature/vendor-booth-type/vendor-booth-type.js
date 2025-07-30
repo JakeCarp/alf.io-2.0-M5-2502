@@ -137,10 +137,14 @@
             return $http.get('/admin/api/' + publicIdentifier + '/' + boothTypeId + '/vendor-booth-type');
         };
         this.createBoothType = function (boothType) {
-            return $http.post('/admin/api/' + publicIdentifier + '/vendor-booth-type', boothType);
+            return $http.post('/admin/api/' + publicIdentifier + '/vendor-booth-type', boothType,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
         };
         this.updateBoothType = function (boothType) {
-            return $http.put('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothType.id, boothType);
+            return $http.put('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothType.id, boothType,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
         };
         this.deleteBoothType = function (boothTypeId) {
             return $http.delete('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothTypeId);
