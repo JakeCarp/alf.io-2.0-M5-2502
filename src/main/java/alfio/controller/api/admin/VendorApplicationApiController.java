@@ -43,28 +43,20 @@ public class VendorApplicationApiController {
     @PostMapping("")
     public void createVendorApplication(
             @PathVariable String eventName,
-            @RequestParam String applicantName,
-            @RequestParam String storeName,
-            @RequestParam String email,
-            @RequestParam String phoneNumber,
-            @RequestParam(required = false) String instagram,
-            @RequestParam String portfolio,
-            @RequestParam int boothTypeId,
-            @RequestParam String status,
-            @RequestParam(required = false) String description,
+            @RequestBody createVendorApplicationRequest request,
             Principal principal) {
         vendorApplicationManager.createVendorApplication(
-                eventName, applicantName, storeName, email, phoneNumber, instagram, portfolio, boothTypeId, status,
-                java.sql.Date.valueOf(java.time.LocalDate.now(ZoneId.systemDefault())), description);
+                eventName, request.applicantName(), request.storeName(), request.email(), request.phoneNumber(),
+                request.instagram(), request.portfolio(), request.boothTypeId(), request.status(),
+                java.sql.Date.valueOf(java.time.LocalDate.now(ZoneId.systemDefault())), request.description());
     }
 
     @PutMapping("/{id}/status")
     public void updateVendorApplicationStatus(
             @PathVariable String eventName,
-            @PathVariable Long id,
-            @RequestParam int eventId,
-            @RequestParam String status) {
-        vendorApplicationManager.updateVendorApplicationStatus(id, status);
+            @PathVariable UUID id,
+            @RequestBody UpdateVendorApplicationStatusRequest request) {
+        vendorApplicationManager.updateVendorApplicationStatus(id, request.status());
     }
 
     @DeleteMapping("/{id}")
@@ -92,6 +84,22 @@ public class VendorApplicationApiController {
             @PathVariable String eventName,
             @PathVariable Long id) {
         return vendorApplicationManager.getVendorApplicationById(id);
+    }
+
+    public record createVendorApplicationRequest(
+            String applicantName,
+            String storeName,
+            String email,
+            String phoneNumber,
+            String instagram,
+            String portfolio,
+            int boothTypeId,
+            String status,
+            String description) {
+    }
+
+    public record UpdateVendorApplicationStatusRequest(
+            String status) {
     }
 
 }

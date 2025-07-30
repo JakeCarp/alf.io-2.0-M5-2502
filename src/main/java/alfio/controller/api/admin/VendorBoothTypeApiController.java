@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,25 +28,20 @@ public class VendorBoothTypeApiController {
     @PostMapping("")
     public void createVendorBoothType(
             @PathVariable String eventName,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam int stock,
-            @RequestParam double price) {
+            @RequestBody CreateVendorBoothTypeRequest request) {
 
-        vendorBoothTypeManager.createVendorBoothType(name, description, stock, price, eventName);
+        vendorBoothTypeManager.createVendorBoothType(request.name(), request.description(), request.stock(),
+                request.price(), eventName);
     }
 
     @PutMapping("/{id}")
     public void updateVendorBoothType(
             @PathVariable String eventName,
             @PathVariable UUID id,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam VendorBoothType.BoothTypeStatus status,
-            @RequestParam int stock,
-            @RequestParam double price) {
+            @RequestBody UpdateVendorBoothTypeRequest request) {
 
-        vendorBoothTypeManager.updateVendorBoothType(id, name, description, status, stock, price);
+        vendorBoothTypeManager.updateVendorBoothType(id, request.name(), request.description(), request.status(),
+                request.stock(), request.price());
     }
 
     @DeleteMapping("/{id}")
@@ -76,6 +72,21 @@ public class VendorBoothTypeApiController {
                 .collect(Collectors.toList());
 
         return new PageAndContent<List<VendorBoothType>>(content, page);
+    }
+
+    public record CreateVendorBoothTypeRequest(
+            String name,
+            String description,
+            int stock,
+            double price) {
+    }
+
+    public record UpdateVendorBoothTypeRequest(
+            String name,
+            String description,
+            VendorBoothType.BoothTypeStatus status,
+            int stock,
+            double price) {
     }
 
 }

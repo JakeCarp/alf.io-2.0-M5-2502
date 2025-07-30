@@ -59,7 +59,7 @@ public interface VendorApplicationRepository {
         @Query("""
                         update vendor_applications set status = :status where id = :id
                         """)
-        int updateStatus(@Bind("status") String status, @Bind("id") Long id);
+        int updateStatus(@Bind("status") String status, @Bind("id") UUID id);
 
         @Query("""
                         delete from vendor_applications where id = :id

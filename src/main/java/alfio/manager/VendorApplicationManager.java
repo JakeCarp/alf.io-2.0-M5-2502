@@ -2,6 +2,7 @@ package alfio.manager;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +53,7 @@ public class VendorApplicationManager {
                 description);
     }
 
-    public void updateVendorApplicationStatus(Long id, String status) {
+    public void updateVendorApplicationStatus(UUID id, String status) {
         vendorApplicationRepository.updateStatus(status, id);
     }
 
