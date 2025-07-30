@@ -16,6 +16,12 @@
             <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.description" data-show-existing-errors="showExistingErrors"></field-error>
         </div>
 
+        <div class="form-group" bs-form-error="vendorBoothType.stock">
+            <label for="stock">Stock</label>
+            <input type="number" id="stock" data-ng-model="vendorBoothType.stock" class="form-control" required/>
+            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.stock" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+
         <div class="form-group" bs-form-error="vendorBoothType.price">
             <label for="price">Price</label>
             <input type="number" id="price" data-ng-model="vendorBoothType.price" class="form-control" required/>
