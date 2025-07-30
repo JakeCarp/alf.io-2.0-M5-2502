@@ -67,14 +67,14 @@
                     $scope.boothType = boothType || {};
                     $scope.save = function () {
                         if ($scope.boothType.id) {
-                            VendorBoothTypeService.updateBoothType($scope.boothType).then(function () {
+                            VendorBoothTypeService.updateBoothType($scope.boothType, ctrl.publicIdentifier).then(function () {
                                 loadData();
                                 $scope.$close();
                             }, function (error) {
                                 console.error('Error updating booth type:', error);
                             });
                         } else {
-                            VendorBoothTypeService.createBoothType($scope.boothType).then(function () {
+                            VendorBoothTypeService.createBoothType($scope.boothType, ctrl.publicIdentifier).then(function () {
                                 loadData();
                                 $scope.$close();
                             }, function (error) {
