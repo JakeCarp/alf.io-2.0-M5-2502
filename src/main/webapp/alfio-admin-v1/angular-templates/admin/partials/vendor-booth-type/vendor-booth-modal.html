@@ -1,31 +1,31 @@
 <div class="modal-header">
-    <h3 data-ng-if="!vendorBoothType.id">Insert new Vendor Booth Type</h3>
-    <h3 data-ng-if="vendorBoothType.id">Edit Vendor Booth Type</h3>
+    <h3 data-ng-if="!boothType.id">Insert new Vendor Booth Type</h3>
+    <h3 data-ng-if="boothType.id">Edit Vendor Booth Type</h3>
 </div>
-<form name="vendorBoothTypeForm" data-ng-submit="ctrl.addOrEditBoothType(ctrl.vendorBoothType)">
+<form name="vendorBoothTypeForm" data-ng-submit="save()">
     <div class="modal-body">
-        <div class="form-group" bs-form-error="vendorBoothType.name">
+        <div class="form-group" bs-form-error="boothType.name">
             <label for="name">Name</label>
-            <input type="text" id="name" data-ng-model="vendorBoothType.name" class="form-control" required minlength="3"/>
-            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.name" data-show-existing-errors="showExistingErrors"></field-error>
+            <input type="text" id="name" data-ng-model="boothType.name" class="form-control" required minlength="3"/>
+            <field-error data-form-obj="boothTypeForm" data-field-obj="boothType.name" data-show-existing-errors="showExistingErrors"></field-error>
         </div>
 
-        <div class="form-group" bs-form-error="vendorBoothType.description">
+        <div class="form-group" bs-form-error="boothType.description">
             <label for="description">Description</label>
-            <input type="text" id="description" data-ng-model="vendorBoothType.description" class="form-control" maxlength="1024"/>
-            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.description" data-show-existing-errors="showExistingErrors"></field-error>
+            <input type="text" id="description" data-ng-model="boothType.description" class="form-control" maxlength="1024"/>
+            <field-error data-form-obj="boothTypeForm" data-field-obj="boothType.description" data-show-existing-errors="showExistingErrors"></field-error>
         </div>
 
-        <div class="form-group" bs-form-error="vendorBoothType.stock">
+        <div class="form-group" bs-form-error="boothType.stock">
             <label for="stock">Stock</label>
-            <input type="number" id="stock" data-ng-model="vendorBoothType.stock" class="form-control" required/>
-            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.stock" data-show-existing-errors="showExistingErrors"></field-error>
+            <input type="number" id="stock" data-ng-model="boothType.stock" class="form-control" required/>
+            <field-error data-form-obj="boothTypeForm" data-field-obj="boothType.stock" data-show-existing-errors="showExistingErrors"></field-error>
         </div>
 
-        <div class="form-group" bs-form-error="vendorBoothType.price">
+        <div class="form-group" bs-form-error="boothType.price">
             <label for="price">Price</label>
-            <input type="number" id="price" data-ng-model="vendorBoothType.price" class="form-control" required/>
-            <field-error data-form-obj="vendorBoothTypeForm" data-field-obj="vendorBoothType.price" data-show-existing-errors="showExistingErrors"></field-error>
+            <input type="number" id="price" data-ng-model="boothType.price" class="form-control" required/>
+            <field-error data-form-obj="boothTypeForm" data-field-obj="boothType.price" data-show-existing-errors="showExistingErrors"></field-error>
         </div>
     </div>
     <div class="modal-footer">
