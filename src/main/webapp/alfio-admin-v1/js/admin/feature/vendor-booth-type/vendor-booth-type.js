@@ -90,9 +90,9 @@
             });
         };
 
-        function deleteBoothType(boothType) {
+        function deleteBoothType(boothTypeId) {
             if (confirm('Are you sure you want to delete this booth type?')) {
-                VendorBoothTypeService.deleteBoothType(boothType.id).then(function () {
+                VendorBoothTypeService.deleteBoothType(boothTypeId).then(function () {
                     loadData();
                 }, function (error) {
                     console.error('Error deleting booth type:', error);
