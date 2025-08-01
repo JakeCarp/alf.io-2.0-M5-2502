@@ -28,8 +28,7 @@ public class VendorBoothType {
             @Column("status") String status,
             @Column("stock") int stock,
             @Column("price") double price,
-            @Column("event_id") int eventId,
-            @Column("approved_applications") List<VendorApplication> approvedApplications) {
+            @Column("event_id") int eventId) {
         this.id = id;
         this.name = name;
         this.description = description;
