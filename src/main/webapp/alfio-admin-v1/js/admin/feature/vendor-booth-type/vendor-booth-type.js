@@ -91,7 +91,7 @@
         };
 
         function deleteBoothType(boothTypeId) {
-            if (confirm(`Are you sure you want to delete this booth type? ${boothTypeId}`)) {
+            if (confirm(`Are you sure you want to delete this booth type?`)) {
                 VendorBoothTypeService.deleteBoothType(boothTypeId).then(function () {
                     loadData();
                 }, function (error) {
