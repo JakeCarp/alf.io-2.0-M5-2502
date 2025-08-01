@@ -134,7 +134,7 @@
         };
 
         this.loadBoothTypeDetail = function (boothTypeId) {
-            return $http.get('/admin/api/' + publicIdentifier + '/' + boothTypeId + '/vendor-booth-type');
+            return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type/' + boothTypeId);
         };
         this.createBoothType = function (boothType) {
             return $http.post('/admin/api/' + publicIdentifier + '/vendor-booth-type', boothType,

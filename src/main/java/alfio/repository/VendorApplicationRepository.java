@@ -66,9 +66,7 @@ public interface VendorApplicationRepository {
                         """)
         int delete(@Bind("id") Long id);
 
-        @Query("""
-                        select * from vendor_applications where vendor_booth_type_id = :boothTypeId and status = 'APPROVED'
-                        """)
+        @Query("select * from vendor_applications where vendor_booth_type_id = :boothTypeId and status = 'APPROVED'")
         List<VendorApplication> findApprovedByBoothTypeId(@Bind("boothTypeId") UUID boothTypeId);
 
 }
