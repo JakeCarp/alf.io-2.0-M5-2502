@@ -47,6 +47,9 @@ public class VendorBoothTypeManager {
         }
         int eventId = eventOptional.get().getId();
 
+        // loggin event id
+        System.out.println("Event ID: " + eventId);
+
         var boothTypes = boothTypeRepository.findByEventId(eventId);
         boothTypes.forEach(boothType -> {
             var approvedApplications = vendorApplicationRepository.findApprovedByBoothTypeId(boothType.getId());
