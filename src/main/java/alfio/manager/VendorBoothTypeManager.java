@@ -29,9 +29,9 @@ public class VendorBoothTypeManager {
         }
         var eventId = eventOptional.get().getId();
 
-        var result = boothTypeRepository.insert(name, description, VendorBoothType.BoothTypeStatus.ACTIVE, stock, price,
+        var result = boothTypeRepository.insert(name, description, "ACTIVE", stock, price,
                 eventId);
-        var out = new VendorBoothType(result.getKey(), name, description, VendorBoothType.BoothTypeStatus.ACTIVE, stock,
+        var out = new VendorBoothType(result.getKey(), name, description, "ACTIVE", stock,
                 price, eventId, List.of());
         return out;
     }
@@ -60,7 +60,7 @@ public class VendorBoothTypeManager {
     }
 
     public boolean updateVendorBoothType(UUID id, String name, String description,
-            VendorBoothType.BoothTypeStatus status, int stock, double price) {
+            String status, int stock, double price) {
         return boothTypeRepository.update(id, name, description, status, stock, price) > 0;
     }
 
