@@ -27,12 +27,10 @@ public interface VendorBoothTypeRepository {
 
         @Query("""
                         select * from vendor_booth_types where id = :id
-                        """)
+                                """)
         VendorBoothType findById(@Bind("id") UUID id);
 
-        @Query("""
-                        select * from vendor_booth_types where event_id = :eventId
-                        """)
+        @Query("select * from vendor_booth_types where event_id = :eventId")
         List<VendorBoothType> findByEventId(@Bind("eventId") int eventId);
 
         @Query("""
