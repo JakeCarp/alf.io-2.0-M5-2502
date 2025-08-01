@@ -10,15 +10,11 @@ import lombok.ToString;
 @Getter
 @ToString
 public class VendorBoothType {
-    public enum BoothTypeStatus {
-        ACTIVE,
-        INACTIVE
-    }
 
     private final UUID id;
     private final String name;
     private final String description;
-    private final BoothTypeStatus status;
+    private final String status;
     private final int stock;
     private final double price;
     private final int eventId;
@@ -29,7 +25,7 @@ public class VendorBoothType {
             @Column("id") UUID id,
             @Column("name") String name,
             @Column("description") String description,
-            @Column("status") BoothTypeStatus status,
+            @Column("status") String status,
             @Column("stock") int stock,
             @Column("price") double price,
             @Column("event_id") int eventId,
@@ -37,7 +33,7 @@ public class VendorBoothType {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
+        this.status = status.toUpperCase();
         this.stock = stock;
         this.price = price;
         this.eventId = eventId;
