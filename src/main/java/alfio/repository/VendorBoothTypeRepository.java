@@ -16,17 +16,15 @@ public interface VendorBoothTypeRepository {
         AffectedRowCountAndKey<UUID> insert(
                         @Bind("name") String name,
                         @Bind("description") String description,
-                        @Bind("status") VendorBoothType.BoothTypeStatus status,
+                        @Bind("status") String status,
                         @Bind("stock") int stock,
                         @Bind("price") double price,
                         @Bind("eventId") int eventId);
 
-        @Query("""
-                        select * from vendor_booth_types where id = :id
-                                """)
+        @Query("select * from vendor_booth_types where id = :id")
         VendorBoothType findById(@Bind("id") UUID id);
 
-        @Query("select id, name, description, price, event_id, status, stock from vendor_booth_types where event_id = :eventId")
+        @Query("select * from vendor_booth_types where event_id = :eventId")
         List<VendorBoothType> findByEventId(@Bind("eventId") int eventId);
 
         @Query("""
@@ -36,7 +34,7 @@ public interface VendorBoothTypeRepository {
                         @Bind("id") UUID id,
                         @Bind("name") String name,
                         @Bind("description") String description,
-                        @Bind("status") VendorBoothType.BoothTypeStatus status,
+                        @Bind("status") String status,
                         @Bind("stock") int stock,
                         @Bind("price") double price);
 
