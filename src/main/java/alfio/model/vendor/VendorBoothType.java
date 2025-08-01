@@ -37,7 +37,6 @@ public class VendorBoothType {
         this.stock = stock;
         this.price = price;
         this.eventId = eventId;
-        this.approvedApplications = approvedApplications;
     }
 
     public void setApprovedApplications(List<VendorApplication> approvedApplications) {
