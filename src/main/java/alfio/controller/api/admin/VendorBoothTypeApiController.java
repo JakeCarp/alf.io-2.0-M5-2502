@@ -84,7 +84,7 @@ public class VendorBoothTypeApiController {
     public record UpdateVendorBoothTypeRequest(
             String name,
             String description,
-            VendorBoothType.BoothTypeStatus status,
+            String status,
             int stock,
             double price) {
     }
