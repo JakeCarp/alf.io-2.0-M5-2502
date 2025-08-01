@@ -30,7 +30,6 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <pre>{{::boothType | json}}</pre>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
@@ -41,6 +40,7 @@
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="boothType in ctrl.boothTypes">
+                    <pre>{{::boothType | json}}</pre>
                     <td>{{::boothType.name}}</td>
                     <td>{{::boothType.description}}</td>
                     <td>{{::boothType.price | currency}}</td>
