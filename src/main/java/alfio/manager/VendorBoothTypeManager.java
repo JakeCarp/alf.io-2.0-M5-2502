@@ -32,7 +32,7 @@ public class VendorBoothTypeManager {
         var result = boothTypeRepository.insert(name, description, "ACTIVE", stock, price,
                 eventId);
         var out = new VendorBoothType(result.getKey(), name, description, "ACTIVE", stock,
-                price, eventId, List.of());
+                price, eventId);
         return out;
     }
 
