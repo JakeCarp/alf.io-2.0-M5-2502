@@ -52,7 +52,8 @@ public class VendorBoothTypeManager {
 
         var boothTypes = boothTypeRepository.findByEventId(eventId);
         boothTypes.forEach(boothType -> {
-            var approvedApplications = vendorApplicationRepository.findApprovedByBoothTypeId(boothType.getId());
+            List<VendorApplication> approvedApplications = vendorApplicationRepository
+                    .findApprovedByBoothTypeId(boothType.getId());
             boothType.setApprovedApplications(approvedApplications);
         });
         return boothTypes;
