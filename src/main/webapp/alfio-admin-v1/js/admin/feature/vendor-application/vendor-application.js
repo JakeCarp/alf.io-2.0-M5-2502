@@ -65,11 +65,11 @@
 
         function loadData() {
             $location.search({page: ctrl.currentPage, search: ctrl.toSearch});
-            VendorApplicationService.loadApplicationList(ctrl.contextType, ctrl.publicIdentifier, ctrl.currentPage - 1, ctrl.toSearch).success(function(results) {
+            VendorApplicationService.loadApplicationList(ctrl.currentPage - 1, ctrl.toSearch).success(function(results) {
                 ctrl.applications = results.left;
                 ctrl.totalItems = results.right;
             });
-            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.publicIdentifier).success(function(boothTypes) {
+            VendorBoothTypeService.loadBoothTypeList(ctrl.currentPage - 1, ctrl.toSearch).success(function(boothTypes) {
                 ctrl.boothTypes = boothTypes.left;
             });
         }
@@ -138,11 +138,11 @@
             publicIdentifier = id;
         };
 
-        this.loadApplicationList = function(contextType, page, search) {
+        this.loadApplicationList = function( page, search) {
             return $http.get('/admin/api/'+publicIdentifier+'/vendor-application', {params: {page: page, pageSize: 50, search: search}}).error(HttpErrorHandler.handle);
         };
 
-        this.loadApplicationDetail = function(contextType, applicationId) {
+        this.loadApplicationDetail = function( applicationId) {
             return $http.get('/admin/api/'+publicIdentifier+'/vendor-application/'+applicationId).error(HttpErrorHandler.handle);
         }
          
@@ -175,7 +175,7 @@
         publicIdentifier = id;
          };
          
-        this.loadBoothTypeList = function (contextType, page, search) {
+        this.loadBoothTypeList = function ( page, search) {
             return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
                 params: {
                     page: page,
