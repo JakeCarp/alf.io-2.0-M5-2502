@@ -83,6 +83,7 @@
                     $scope.application = application || {};
                     $scope.boothTypes = ctrl.boothTypes;
                     $scope.save = function () {
+                        console.log('Saving application:', $scope.application);
                         if ($scope.application.id) {
                             VendorApplicationService.updateApplication(application).then(function () {
                                 loadData();
@@ -148,15 +149,11 @@
         }
          
          this.createApplication = function (application) {
-            return $http.post('/admin/api/' + publicIdentifier + '/vendor-application', application,
-                { headers: { 'Content-Type': 'application/json' } }
-            );
+            return $http.post('/admin/api/' + publicIdentifier + '/vendor-application', application);
          }
 
          this.updateApplication = function (application) {
-            return $http.put('/admin/api/' + publicIdentifier + '/vendor-application/' + application.id, application,
-                { headers: { 'Content-Type': 'application/json' } }
-            );
+            return $http.put('/admin/api/' + publicIdentifier + '/vendor-application/' + application.id, application);
          }
 
          this.deleteApplication = function (applicationId) {
