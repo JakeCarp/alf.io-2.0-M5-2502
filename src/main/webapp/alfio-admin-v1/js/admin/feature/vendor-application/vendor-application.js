@@ -116,7 +116,7 @@
 
     }
 
-    VendorApplicationListController.prototype.$inject = ['VendorApplicationService', '$location', '$stateParams'];
+    VendorApplicationListController.prototype.$inject = ['VendorApplicationService', '$uibModal', '$location', '$stateParams'];
 
     function VendorApplicationDetailController(VendorApplicationService, $stateParams) {
         var self = this;
