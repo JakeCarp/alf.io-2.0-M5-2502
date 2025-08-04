@@ -18,6 +18,7 @@
                 })
         }])
         .service('VendorApplicationService', VendorApplicationService)
+        .service('VendorBoothTypeService', VendorBoothTypeService)
         .filter('truncateString', function() {
             return function(string, maxLength) {
                 if(!angular.isDefined(string)) {
@@ -29,19 +30,30 @@
         });
 
 
-    function VendorApplicationListController(VendorApplicationService, $location, $stateParams) {
+    function VendorApplicationListController(VendorApplicationService, VendorBoothTypeService, $location, $stateParams) {
         var ctrl = this;
 
         var currentSearch = $location.search();
         ctrl.currentPage = currentSearch.page || 1;
         ctrl.toSearch = currentSearch.search || '';
-         ctrl.statusFilter = '';
+        ctrl.statusFilter = '';
         ctrl.boothTypeFilter = ''
 
         ctrl.applications = [];
+        ctrl.boothTypes = [];
         ctrl.publicIdentifier = $stateParams.eventName || $stateParams.subscriptionId;
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
+        ctrl.addorEditApplication = addOrEditApplication;
+        ctrl.deleteApplication = function(application) {
+            if (confirm('Are you sure you want to delete this application?')) {
+                VendorApplicationService.deleteApplication(application.id).then(function () {
+                }, function (error) {
+                    console.error('Error deleting application:', error);
+                });
+                loadData();
+            }
+        };
         ctrl.loadData = loadData();
         ctrl.updateFilteredData = function() {
             loadData();
@@ -54,6 +66,40 @@
             VendorApplicationService.loadApplicationList(ctrl.contextType, ctrl.publicIdentifier, ctrl.currentPage - 1, ctrl.toSearch).success(function(results) {
                 ctrl.applications = results.left;
                 ctrl.totalItems = results.right;
+            });
+            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.publicIdentifier).success(function(boothTypes) {
+                ctrl.boothTypes = boothTypes.left;
+            });
+        }
+
+
+        function addOrEditApplication(application = {}) {
+            $uibModal.open({
+                templateUrl: window.ALFIO_CONTEXT_PATH + '/resources/angular-templates/admin/partials/vendor-application/vendor-application-modal.html',
+                backdrop: 'static',
+                controller: function ($scope) {
+                    $scope.application = application || {};
+                    $scope.save = function () {
+                        if ($scope.application.id) {
+                            VendorApplicationService.updateApplication(application).then(function () {
+                                loadData();
+                                $scope.$close();
+                            }, function (error) {
+                                console.error('Error updating application:', error);
+                            });
+                        } else {
+                            VendorApplicationService.createApplication(application).then(function () {
+                                loadData();
+                                $scope.$close();
+                            }, function (error) {
+                                console.error('Error creating application:', error);
+                            });
+                        }
+                    };
+                    $scope.cancel = function () {
+                        $scope.$dismiss();
+                    };
+                }
             });
         }
 
@@ -81,7 +127,7 @@
         });
     }
 
-    VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', '$stateParams'];
+    VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeService', '$stateParams'];
 
     function VendorApplicationService($http, HttpErrorHandler) {
 
@@ -95,5 +141,45 @@
     }
 
     VendorApplicationService.prototype.$inject = ['$http', 'HttpErrorHandler'];
+
+     function VendorBoothTypeService($http) {
+        let publicIdentifier = null;
+
+    this.setPublicIdentifier = function (id) {
+        publicIdentifier = id;
+         };
+         
+        this.loadBoothTypeList = function (contextType, page, search) {
+            return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
+                params: {
+                    contextType: contextType,
+                    publicIdentifier: publicIdentifier,
+                    page: page,
+                    search: search
+                }
+            });
+         };
+         
+         this.createApplication = function (application) {
+            return $http.post('/admin/api/' + publicIdentifier + '/vendor-application', application,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+         }
+
+         this.updateApplication = function (application) {
+            return $http.put('/admin/api/' + publicIdentifier + '/vendor-application/' + application.id, application,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+         }
+
+         this.deleteApplication = function (applicationId) {
+             return $http.delete('/admin/api/' + publicIdentifier + '/vendor-application/' + applicationId)
+                 .error(function (error) {
+                     console.error('Error deleting application:', error);
+                 });
+         }
+    }
+
+    VendorBoothTypeService.$inject = ['$http', 'HttpErrorHandler'];
 
 })();

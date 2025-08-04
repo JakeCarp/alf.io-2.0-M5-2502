@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h3 data-ng-if="!application.id">Insert New Vendor Application</h3>
+    <h3 data-ng-if="application.id">Edit Vendor Application</h3>
+</div>
+<form name="vendorApplicationForm" data-ng-submit="save()">
+    <div class="modal-body">
+        <div class="form-group" bs-form-error="application.applicantName">
+            <label for="applicantName">Applicant Name</label>
+            <input type="text" id="applicantName" data-ng-model="application.applicantName" class="form-control" required minlength="3"/>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.applicantName" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+
+        <div class="form-group" bs-form-error="application.storeName">
+            <label for="storeName">Store Name</label>
+            <input type="text" id="storeName" data-ng-model="application.storeName" class="form-control" maxlength="1024"/>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.storeName" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+        <div class="form-group" bs-form-error="application.email">
+            <label for="email">Email</label>
+            <input type="text" id="email" data-ng-model="application.email" class="form-control" maxlength="1024"/>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.email" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+
+        <div class="form-group" bs-form-error="application.phoneNumber">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" data-ng-model="application.phoneNumber" class="form-control" required/>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.phoneNumber" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+
+        <div class="form-group" bs-form-error="application.instagram">
+            <label for="instagram">Instagram</label>
+            <input type="text" id="instagram" data-ng-model="application.instagram" class="form-control" required/>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.instagram" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+        <div class="form-group" bs-form-error="application.portfolio">
+            <label for="portfolio">Portfolio</label>
+            <input type="text" id="portfolio" data-ng-model="application.portfolio" class="form-control" required/>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.portfolio" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+        <div class="form-group" bs-form-error="application.boothType">
+            <label for="boothType">Booth Type</label>
+            <select id="boothType" class="form-control" data-ng-model="application.boothTypeId" required>
+                <option value="">Select Booth Type</option>
+                <option data-ng-repeat="boothType in ctrl.boothTypes" value="{{boothType.id}}">{{boothType.name}}</option>
+            </select>
+            <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.boothTypeId" data-show-existing-errors="showExistingErrors"></field-error>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="$dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-ng-disabled="vendorApplicationForm.$invalid || loading">
+            <span data-ng-if="!loading">Save</span>
+            <span data-ng-if="loading"><i class="fa fa-spinner fa-spin"></i> Saving...</span>
+        </button>
+</form>
