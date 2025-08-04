@@ -43,27 +43,22 @@ public class VendorApplicationApiController {
         @PostMapping("")
         public void createVendorApplication(
                         @PathVariable String eventName,
-                        @RequestParam String applicantName,
-                        @RequestParam String storeName,
-                        @RequestParam String email,
-                        @RequestParam String phoneNumber,
-                        @RequestParam String instagram,
-                        @RequestParam String portfolio,
-                        @RequestParam UUID boothTypeId,
-                        @RequestParam String description,
+                        @RequestBody createVendorApplicationRequest request,
                         Principal principal) {
                 vendorApplicationManager.createVendorApplication(
-                                eventName, applicantName, storeName, email, phoneNumber,
-                                instagram, portfolio, boothTypeId, "PENDING",
-                                java.sql.Date.valueOf(java.time.LocalDate.now(ZoneId.systemDefault())), description);
+                                eventName, request.applicantName(), request.storeName(), request.email(),
+                                request.phoneNumber(),
+                                request.instagram(), request.portfolio(), request.boothTypeId(), "PENDING",
+                                java.sql.Date.valueOf(java.time.LocalDate.now(ZoneId.systemDefault())),
+                                request.description());
         }
 
         @PutMapping("/{id}/status")
         public void updateVendorApplicationStatus(
                         @PathVariable String eventName,
                         @PathVariable UUID id,
-                        @RequestParam String status) {
-                vendorApplicationManager.updateVendorApplicationStatus(id, status);
+                        @RequestBody UpdateVendorApplicationStatusRequest request) {
+                vendorApplicationManager.updateVendorApplicationStatus(id, request.status());
         }
 
         @DeleteMapping("/{id}")
@@ -92,4 +87,20 @@ public class VendorApplicationApiController {
                         @PathVariable Long id) {
                 return vendorApplicationManager.getVendorApplicationById(id);
         }
+
+        public record createVendorApplicationRequest(
+                        String applicantName,
+                        String storeName,
+                        String email,
+                        String phoneNumber,
+                        String instagram,
+                        String portfolio,
+                        UUID boothTypeId,
+                        String description) {
+        }
+
+        public record UpdateVendorApplicationStatusRequest(
+                        String status) {
+        }
+
 }
