@@ -18,7 +18,7 @@
                 })
         }])
         .service('VendorApplicationService', VendorApplicationService)
-        .service('VendorBoothTypeService', VendorBoothTypeService)
+        .service('VendorBoothTypeInAppService', VendorBoothTypeInAppService)
         .filter('truncateString', function() {
             return function(string, maxLength) {
                 if(!angular.isDefined(string)) {
@@ -116,7 +116,7 @@
 
     }
 
-    VendorApplicationListController.prototype.$inject = ['VendorApplicationService', '$location', '$stateParams'];
+    VendorApplicationListController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeInAppService', '$location', '$stateParams'];
 
     function VendorApplicationDetailController(VendorApplicationService, $stateParams) {
         var self = this;
@@ -129,7 +129,7 @@
         });
     }
 
-    VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeService', '$stateParams'];
+    VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeInAppService', '$stateParams'];
 
     function VendorApplicationService($http, HttpErrorHandler) {
         let publicIdentifier = null;
@@ -168,16 +168,16 @@
 
     VendorApplicationService.prototype.$inject = ['$http', 'HttpErrorHandler'];
 
-     function VendorBoothTypeService($http) {
+     function VendorBoothTypeInAppService($http) {
         let publicIdentifier = null;
 
     this.setPublicIdentifier = function (id) {
         publicIdentifier = id;
-         };
-         
-        this.loadBoothTypeList = function ( page, search) {
-            return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
-                params: {
+    };
+
+    this.loadBoothTypeList = function (page, search) {
+        return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
+            params: {
                     page: page,
                     pageSize: 50,
                     search: search
@@ -187,6 +187,6 @@
        
     }
 
-    VendorBoothTypeService.$inject = ['$http', 'HttpErrorHandler'];
+    VendorBoothTypeInAppService.$inject = ['$http', 'HttpErrorHandler'];
 
 })();
