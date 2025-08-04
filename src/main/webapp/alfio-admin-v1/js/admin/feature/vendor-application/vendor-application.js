@@ -30,7 +30,7 @@
         });
 
 
-    function VendorApplicationListController(VendorApplicationService, VendorBoothTypeService, $location, $stateParams) {
+    function VendorApplicationListController(VendorApplicationService, $uibModal, VendorBoothTypeService, $location, $stateParams) {
         var ctrl = this;
 
         var currentSearch = $location.search();
