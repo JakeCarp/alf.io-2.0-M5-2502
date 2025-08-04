@@ -57,7 +57,7 @@ public class VendorApplicationManager {
         vendorApplicationRepository.updateStatus(status, id);
     }
 
-    public void deleteVendorApplication(Long id) {
+    public void deleteVendorApplication(UUID id) {
         vendorApplicationRepository.delete(id);
     }
 
@@ -70,7 +70,7 @@ public class VendorApplicationManager {
         return vendorApplicationRepository.findByEventId(eventId);
     }
 
-    public VendorApplication getVendorApplicationById(Long id) {
+    public VendorApplication getVendorApplicationById(UUID id) {
         return vendorApplicationRepository.findById(id);
     }
 }

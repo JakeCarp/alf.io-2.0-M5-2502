@@ -64,7 +64,7 @@ public class VendorApplicationApiController {
         @DeleteMapping("/{id}")
         public void deleteVendorApplication(
                         @PathVariable String eventName,
-                        @PathVariable Long id) {
+                        @PathVariable UUID id) {
                 vendorApplicationManager.deleteVendorApplication(id);
         }
 
@@ -84,7 +84,7 @@ public class VendorApplicationApiController {
         @GetMapping("/{id}")
         public VendorApplication getVendorApplicationById(
                         @PathVariable String eventName,
-                        @PathVariable Long id) {
+                        @PathVariable UUID id) {
                 return vendorApplicationManager.getVendorApplicationById(id);
         }
 
