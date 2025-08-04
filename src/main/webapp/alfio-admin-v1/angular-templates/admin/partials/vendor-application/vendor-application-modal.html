@@ -41,7 +41,7 @@
             <label for="boothType">Booth Type</label>
             <select id="boothType" class="form-control" data-ng-model="application.boothTypeId" required>
                 <option value="">Select Booth Type</option>
-                <option data-ng-repeat="boothType in ctrl.boothTypes" value="{{boothType.id}}">{{boothType.name}}</option>
+                <option data-ng-repeat="boothType in boothTypes" value="{{boothType.id}}">{{boothType.name}}</option>
             </select>
             <field-error data-form-obj="vendorApplicationForm" data-field-obj="application.boothTypeId" data-show-existing-errors="showExistingErrors"></field-error>
         </div>
