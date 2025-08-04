@@ -179,6 +179,7 @@
             return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
                 params: {
                     page: page,
+                    pageSize: 50,
                     search: search
                 }
             });
