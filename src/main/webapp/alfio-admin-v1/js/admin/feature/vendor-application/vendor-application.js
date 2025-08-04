@@ -178,8 +178,6 @@
         this.loadBoothTypeList = function (contextType, page, search) {
             return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
                 params: {
-                    contextType: contextType,
-                    publicIdentifier: publicIdentifier,
                     page: page,
                     search: search
                 }
