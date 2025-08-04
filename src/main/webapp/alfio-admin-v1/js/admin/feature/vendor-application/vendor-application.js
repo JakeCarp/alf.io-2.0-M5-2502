@@ -18,7 +18,7 @@
                 })
         }])
         .service('VendorApplicationService', VendorApplicationService)
-        .service('VendorBoothTypeInAppService', VendorBoothTypeInAppService)
+        .service('VendorBoothTypeService', VendorBoothTypeService)
         .filter('truncateString', function() {
             return function(string, maxLength) {
                 if(!angular.isDefined(string)) {
@@ -69,7 +69,7 @@
                 ctrl.applications = results.left;
                 ctrl.totalItems = results.right;
             });
-            VendorBoothTypeService.loadBoothTypeList(ctrl.currentPage - 1, ctrl.toSearch).success(function(boothTypes) {
+            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.currentPage - 1, ctrl.toSearch).success(function(boothTypes) {
                 ctrl.boothTypes = boothTypes.left;
             });
         }
@@ -116,7 +116,7 @@
 
     }
 
-    VendorApplicationListController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeInAppService', '$location', '$stateParams'];
+    VendorApplicationListController.prototype.$inject = ['VendorApplicationService', '$location', '$stateParams'];
 
     function VendorApplicationDetailController(VendorApplicationService, $stateParams) {
         var self = this;
@@ -129,7 +129,7 @@
         });
     }
 
-    VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeInAppService', '$stateParams'];
+    VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeService', '$stateParams'];
 
     function VendorApplicationService($http, HttpErrorHandler) {
         let publicIdentifier = null;
@@ -168,18 +168,19 @@
 
     VendorApplicationService.prototype.$inject = ['$http', 'HttpErrorHandler'];
 
-     function VendorBoothTypeInAppService($http) {
+     function VendorBoothTypeService($http) {
         let publicIdentifier = null;
 
     this.setPublicIdentifier = function (id) {
         publicIdentifier = id;
-    };
-
-    this.loadBoothTypeList = function (page, search) {
-        return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
-            params: {
+         };
+         
+        this.loadBoothTypeList = function (contextType, page, search) {
+            return $http.get('/admin/api/' + publicIdentifier + '/vendor-booth-type', {
+                params: {
+                    contextType: contextType,
+                    publicIdentifier: publicIdentifier,
                     page: page,
-                    pageSize: 50,
                     search: search
                 }
             });
@@ -187,6 +188,6 @@
        
     }
 
-    VendorBoothTypeInAppService.$inject = ['$http', 'HttpErrorHandler'];
+    VendorBoothTypeService.$inject = ['$http', 'HttpErrorHandler'];
 
 })();
