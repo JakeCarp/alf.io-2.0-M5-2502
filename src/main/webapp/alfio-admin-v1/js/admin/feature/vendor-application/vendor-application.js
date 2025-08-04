@@ -69,8 +69,8 @@
                 ctrl.applications = results.left;
                 ctrl.totalItems = results.right;
             });
-            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.currentPage - 1, ctrl.toSearch).success(function(boothTypes) {
-                ctrl.boothTypes = boothTypes.left;
+            VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.currentPage - 1, ctrl.toSearch).success(function(results) {
+                ctrl.boothTypes = results.left;
             });
         }
 
@@ -81,6 +81,7 @@
                 backdrop: 'static',
                 controller: function ($scope) {
                     $scope.application = application || {};
+                    $scope.boothTypes = ctrl.boothTypes;
                     $scope.save = function () {
                         if ($scope.application.id) {
                             VendorApplicationService.updateApplication(application).then(function () {
