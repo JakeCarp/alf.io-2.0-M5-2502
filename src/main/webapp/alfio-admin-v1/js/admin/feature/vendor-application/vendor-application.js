@@ -42,6 +42,8 @@
         ctrl.applications = [];
         ctrl.boothTypes = [];
         ctrl.publicIdentifier = $stateParams.eventName || $stateParams.subscriptionId;
+        VendorBoothTypeService.setPublicIdentifier(ctrl.publicIdentifier);
+        VendorApplicationService.setPublicIdentifier(ctrl.publicIdentifier);
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
         ctrl.addorEditApplication = addOrEditApplication;
@@ -130,14 +132,38 @@
     VendorApplicationDetailController.prototype.$inject = ['VendorApplicationService', 'VendorBoothTypeService', '$stateParams'];
 
     function VendorApplicationService($http, HttpErrorHandler) {
+        let publicIdentifier = null;
 
-        this.loadApplicationList = function(type, publicIdentifier, page, search) {
+        this.setPublicIdentifier = function (id) {
+            publicIdentifier = id;
+        };
+
+        this.loadApplicationList = function(contextType, page, search) {
             return $http.get('/admin/api/'+publicIdentifier+'/vendor-application', {params: {page: page, pageSize: 50, search: search}}).error(HttpErrorHandler.handle);
         };
 
-        this.loadApplicationDetail = function(type, publicIdentifier, applicationId) {
+        this.loadApplicationDetail = function(contextType, applicationId) {
             return $http.get('/admin/api/'+publicIdentifier+'/vendor-application/'+applicationId).error(HttpErrorHandler.handle);
         }
+         
+         this.createApplication = function (application) {
+            return $http.post('/admin/api/' + publicIdentifier + '/vendor-application', application,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+         }
+
+         this.updateApplication = function (application) {
+            return $http.put('/admin/api/' + publicIdentifier + '/vendor-application/' + application.id, application,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+         }
+
+         this.deleteApplication = function (applicationId) {
+             return $http.delete('/admin/api/' + publicIdentifier + '/vendor-application/' + applicationId)
+                 .error(function (error) {
+                     console.error('Error deleting application:', error);
+                 });
+         }
     }
 
     VendorApplicationService.prototype.$inject = ['$http', 'HttpErrorHandler'];
@@ -159,25 +185,7 @@
                 }
             });
          };
-         
-         this.createApplication = function (application) {
-            return $http.post('/admin/api/' + publicIdentifier + '/vendor-application', application,
-                { headers: { 'Content-Type': 'application/json' } }
-            );
-         }
-
-         this.updateApplication = function (application) {
-            return $http.put('/admin/api/' + publicIdentifier + '/vendor-application/' + application.id, application,
-                { headers: { 'Content-Type': 'application/json' } }
-            );
-         }
-
-         this.deleteApplication = function (applicationId) {
-             return $http.delete('/admin/api/' + publicIdentifier + '/vendor-application/' + applicationId)
-                 .error(function (error) {
-                     console.error('Error deleting application:', error);
-                 });
-         }
+       
     }
 
     VendorBoothTypeService.$inject = ['$http', 'HttpErrorHandler'];
