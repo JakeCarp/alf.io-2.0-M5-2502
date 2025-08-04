@@ -49,13 +49,12 @@ public class VendorApplicationApiController {
                         @RequestParam String phoneNumber,
                         @RequestParam String instagram,
                         @RequestParam String portfolio,
-                        @RequestParam int boothTypeId,
-                        @RequestParam String status,
+                        @RequestParam UUID boothTypeId,
                         @RequestParam String description,
                         Principal principal) {
                 vendorApplicationManager.createVendorApplication(
                                 eventName, applicantName, storeName, email, phoneNumber,
-                                instagram, portfolio, boothTypeId, status,
+                                instagram, portfolio, boothTypeId, "PENDING",
                                 java.sql.Date.valueOf(java.time.LocalDate.now(ZoneId.systemDefault())), description);
         }
 

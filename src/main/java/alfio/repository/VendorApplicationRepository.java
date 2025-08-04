@@ -39,7 +39,7 @@ public interface VendorApplicationRepository {
                         @Bind("phone_number") String phoneNumber,
                         @Bind("instagram") String instagram,
                         @Bind("portfolio") String portfolio,
-                        @Bind("booth_type_id") int boothTypeId,
+                        @Bind("booth_type_id") UUID boothTypeId,
                         @Bind("status") String status,
                         @Bind("created_at") Date createdAt,
                         @Bind("event_id") int eventId,

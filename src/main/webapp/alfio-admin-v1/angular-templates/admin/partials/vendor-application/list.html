@@ -54,6 +54,7 @@
                 <th>Booth Type</th>
                 <th>Status</th>
                 <th>Application Date</th>
+                <th>Description</th>
                 <th>Actions</th>
                 </thead>
                 <tbody>
@@ -67,6 +68,7 @@
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.boothType}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.status}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.createdAt | formatDate}}</td>
+                    <td data-ng-class-even="'active'" class="cell-wrap">{{::application.description}}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" ng-click="ctrl.addOrEditApplication(application)"><i class="fa fa-pencil"></i> Edit</button>
                         <button class="btn btn-danger btn-sm" ng-click="ctrl.deleteApplication(application)">Delete</button>

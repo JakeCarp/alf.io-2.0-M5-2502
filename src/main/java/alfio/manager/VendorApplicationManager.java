@@ -27,7 +27,7 @@ public class VendorApplicationManager {
             String phoneNumber,
             String instagram,
             String portfolio,
-            int boothTypeId,
+            UUID boothTypeId,
             String status,
             Date createdAt,
             String description) {
