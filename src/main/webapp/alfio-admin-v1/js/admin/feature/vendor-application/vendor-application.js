@@ -76,6 +76,7 @@
                 results.left.forEach(function(boothType) {
                     ctrl.boothTypesMap[boothType.id] = boothType;
                 });
+                console.log('boothTypesMap:', ctrl.boothTypesMap);
             });
         }
 
