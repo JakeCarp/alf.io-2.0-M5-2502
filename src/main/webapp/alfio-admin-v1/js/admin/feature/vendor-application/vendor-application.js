@@ -58,9 +58,6 @@
             }
         };
         ctrl.loadData = loadData;
-        ctrl.updateFilteredData = function() {
-            filteredApplications();
-        }
 
         loadData();
 
@@ -116,7 +113,7 @@
         ctrl.filteredApplications = function () {
         return ctrl.applications.filter(function (app) {
         const matchesStatus = !ctrl.statusFilter || app.status == ctrl.statusFilter;
-        const matchesBooth = !ctrl.boothTypeFilter || app.boothType == ctrl.boothTypeFilter;
+        const matchesBooth = !ctrl.boothTypeFilter || app.boothTypeId == ctrl.boothTypeFilter;
         return matchesStatus && matchesBooth;
     });
 };
