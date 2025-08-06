@@ -58,14 +58,14 @@
                 <th>Actions</th>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="application in ctrl.applications " data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
+                <tr data-ng-repeat="application in ctrl.filteredApplications()" data-ng-class="{'text-success': application.status === 'PAID',  'text-info': application.status === 'APPROVED', 'text-danger': application.status === 'REJECTED', 'text-warning': application.status === 'PENDING'}">
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.applicantName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.storeName}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.email}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.phoneNumber}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap"><a href="{{::application.instagram}}" target="_blank">{{::application.instagram}}</a></td>
                     <td data-ng-class-even="'active'" class="cell-wrap"><a href="{{::application.portfolio}}" target="_blank">{{::application.portfolio}}</a></td>
-                    <td data-ng-class-even="'active'" class="cell-wrap">{{::application.boothType}}</td>
+                    <td data-ng-class-even="'active'" class="cell-wrap">{{::boothTypesMap[application.boothTypeId].name}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.status}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.createdAt | formatDate}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.description}}</td>

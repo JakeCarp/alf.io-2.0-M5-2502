@@ -42,7 +42,7 @@
         VendorBoothTypeService.setPublicIdentifier(ctrl.publicIdentifier);
         ctrl.contextType = $stateParams.eventName ? 'event' : 'subscription';
         ctrl.itemsPerPage = 50;
-        ctrl.loadData = loadData();
+        ctrl.loadData = loadData;
         ctrl.addOrEditBoothType = addOrEditBoothType;
         ctrl.deleteBoothType = deleteBoothType;
         ctrl.updateFilteredData = function () {

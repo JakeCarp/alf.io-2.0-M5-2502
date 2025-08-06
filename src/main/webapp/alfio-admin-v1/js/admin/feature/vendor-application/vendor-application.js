@@ -40,6 +40,7 @@
         ctrl.boothTypeFilter = ''
 
         ctrl.applications = [];
+        ctrl.boothTypesMap = {};
         ctrl.boothTypes = [];
         ctrl.publicIdentifier = $stateParams.eventName || $stateParams.subscriptionId;
         VendorBoothTypeService.setPublicIdentifier(ctrl.publicIdentifier);
@@ -56,12 +57,13 @@
                 loadData();
             }
         };
-        ctrl.loadData = loadData();
+        ctrl.loadData = loadData;
         ctrl.updateFilteredData = function() {
-            loadData();
+            filteredApplications();
         }
 
         loadData();
+
 
         function loadData() {
             $location.search({page: ctrl.currentPage, search: ctrl.toSearch});
@@ -71,6 +73,9 @@
             });
             VendorBoothTypeService.loadBoothTypeList(ctrl.contextType, ctrl.currentPage - 1, ctrl.toSearch).success(function(results) {
                 ctrl.boothTypes = results.left;
+                results.left.forEach(function(boothType) {
+                    ctrl.boothTypesMap[boothType.id] = boothType;
+                });
             });
         }
 
@@ -109,8 +114,8 @@
 
         ctrl.filteredApplications = function () {
         return ctrl.applications.filter(function (app) {
-        const matchesStatus = !ctrl.statusFilter || app.status === ctrl.statusFilter;
-        const matchesBooth = !ctrl.boothTypeFilter || app.boothType === ctrl.boothTypeFilter;
+        const matchesStatus = !ctrl.statusFilter || app.status == ctrl.statusFilter;
+        const matchesBooth = !ctrl.boothTypeFilter || app.boothType == ctrl.boothTypeFilter;
         return matchesStatus && matchesBooth;
     });
 };
