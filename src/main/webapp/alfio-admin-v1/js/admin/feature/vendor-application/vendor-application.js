@@ -111,7 +111,13 @@
         }
 
         ctrl.filteredApplications = function () {
-        return ctrl.applications.filter(function (app) {
+            return ctrl.applications.filter(function (app) {
+        const matchesSearch = !ctrl.toSearch || app.applicantName.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
+            app.storeName.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
+            app.email.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
+            app.phoneNumber.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
+            app.instagram.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
+            app.portfolio.toLowerCase().includes(ctrl.toSearch.toLowerCase())
         const matchesStatus = !ctrl.statusFilter || app.status == ctrl.statusFilter;
         const matchesBooth = !ctrl.boothTypeFilter || app.boothTypeId == ctrl.boothTypeFilter;
         return matchesStatus && matchesBooth;
