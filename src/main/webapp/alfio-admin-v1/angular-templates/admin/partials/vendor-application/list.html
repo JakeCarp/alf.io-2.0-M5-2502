@@ -65,7 +65,7 @@
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.phoneNumber}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap"><a href="{{::application.instagram}}" target="_blank">{{::application.instagram}}</a></td>
                     <td data-ng-class-even="'active'" class="cell-wrap"><a href="{{::application.portfolio}}" target="_blank">{{::application.portfolio}}</a></td>
-                    <td data-ng-class-even="'active'" class="cell-wrap">{{boothTypesMap[application.boothTypeId].name}}</td>
+                    <td data-ng-class-even="'active'" class="cell-wrap">{{ctrl.boothTypesMap[application.boothTypeId].name}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.status}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.createdAt | formatDate}}</td>
                     <td data-ng-class-even="'active'" class="cell-wrap">{{::application.description}}</td>
