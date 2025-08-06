@@ -110,14 +110,15 @@
             });
         }
 
-        ctrl.filteredApplications = function () {
+        ctrl.filteredApplications = function () { 
+            const search = ctrl.toSearch ? ctrl.toSearch.toLowerCase() : '';
             return ctrl.applications.filter(function (app) {
-        const matchesSearch = !ctrl.toSearch || app.applicantName.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
-            app.storeName.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
-            app.email.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
-            app.phoneNumber.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
-            app.instagram.toLowerCase().includes(ctrl.toSearch.toLowerCase()) ||
-            app.portfolio.toLowerCase().includes(ctrl.toSearch.toLowerCase())
+        const matchesSearch = !search || app.applicantName.toLowerCase().includes(search) ||
+            app.storeName.toLowerCase().includes(search) ||
+            app.email.toLowerCase().includes(search) ||
+            app.phoneNumber.toLowerCase().includes(search) ||
+            app.instagram.toLowerCase().includes(search) ||
+            app.portfolio.toLowerCase().includes(search)
         const matchesStatus = !ctrl.statusFilter || app.status == ctrl.statusFilter;
         const matchesBooth = !ctrl.boothTypeFilter || app.boothTypeId == ctrl.boothTypeFilter;
         return matchesStatus && matchesBooth;
